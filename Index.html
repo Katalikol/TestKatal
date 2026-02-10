@@ -12,14 +12,14 @@
         }
 
         body {
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
+            color: #fff;
+            background-color: #1e1e1e; /* Темный фон для всего */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            position: relative;
+            font-family: Arial, sans-serif;
         }
 
         .Main {
@@ -30,7 +30,10 @@
         }
 
         h1 {
+            font-size: 30px;
             margin-bottom: 20px;
+            color: #fff;
+            font-weight: 600;
         }
 
         img {
@@ -47,10 +50,16 @@
             font-size: 20px;
             font-weight: 500;
             cursor: pointer;
-            color: var(--tg-theme-button-text-color);
-            background: var(--tg-theme-button-color);
+            color: #fff;
+            background-color: #4CAF50; /* Зеленая кнопка */
+            transition: background-color 0.3s;
         }
 
+        .btn:hover {
+            background-color: #45a049; /* Цвет кнопки при наведении */
+        }
+
+        /* Модальное окно регистрации */
         #form {
             display: none;
             position: fixed;
@@ -58,20 +67,20 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7); /* Прозрачный черный фон */
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 1000;
-            text-align: center;
+            z-index: 1000; /* Поверх всего контента */
         }
 
         .form-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
+            background-color: #2C2C2C;
+            padding: 30px;
+            border-radius: 10px;
             max-width: 400px;
             width: 100%;
+            text-align: center;
         }
 
         input {
@@ -80,14 +89,14 @@
             border: 2px solid #535353;
             padding: 15px 10px;
             margin: 10px 0;
-            background: var(--tg-theme-section-separator-color);
-            color: var(--tg-theme-text-color);
+            background: #424242;
+            color: #fff;
             transition: all .2s;
             width: 100%;
         }
 
         input:focus {
-            border-color: var(--tg-theme-secondary-bg-color);
+            border-color: #4CAF50;
         }
 
         .error {
@@ -100,26 +109,21 @@
             margin-top: 5px;
         }
 
+        /* Стили для кнопки */
         #registr {
             margin-top: 20px;
-        }
-
-        #Main {
-            text-align: center;
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            position: relative;
         }
     </style>
 </head>
 <body>
+    <!-- Главное меню -->
     <div id="Main" class="Main">
         <h1>TestKatalMotors</h1>
         <img src="https://avatars.mds.yandex.net/i?id=92059cd2e3a30100d6ef109d0b7194cb8c5f286b-4079923-images-thumbs&n=13" alt="Logo">
         <button id="buy" class="btn">Начать регистрацию</button>
     </div>
 
+    <!-- Модальное окно регистрации -->
     <div id="form">
         <div class="form-content">
             <h1>Регистрация</h1>
@@ -136,44 +140,50 @@
         let buyBtn = document.getElementById("buy");
         let registrBtn = document.getElementById("registr");
 
+        // Проверка, если имя и userId уже сохранены в localStorage, показываем главную страницу
         if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) {
-            document.getElementById("Main").style.display = "none";  
-            tg.close(); 
+            document.getElementById("Main").style.display = "none";  // Скрываем главную секцию
+            tg.close(); // Закрываем окно
         } else {
+            // Если данные не сохранены, показываем окно регистрации
             document.getElementById("form").style.display = "flex";
         }
 
-
+        // Обработчик клика на кнопку "Начать регистрацию"
         buyBtn.addEventListener("click", () => {
-            document.getElementById("Main").style.display = "none";  
-            document.getElementById("form").style.display = "flex"; 
+            document.getElementById("Main").style.display = "none";  // Скрываем главную секцию
+            document.getElementById("form").style.display = "flex"; // Показываем форму регистрации
 
+            // Автоматически заполняем имя пользователя (если оно есть в данных WebApp)
             let name = tg.initDataUnsafe?.user?.first_name || '';
             let username = tg.initDataUnsafe?.user?.username || '';
             let userId = tg.initDataUnsafe?.user?.id || '';
 
             document.getElementById("user_name").value = name;
-            localStorage.setItem('user_name', name); 
-            localStorage.setItem('username', username); 
-            localStorage.setItem('user_id', userId); 
+            localStorage.setItem('user_name', name); // Сохраняем имя в localStorage
+            localStorage.setItem('username', username); // Сохраняем username в localStorage
+            localStorage.setItem('user_id', userId); // Сохраняем userId в localStorage
         });
 
+        // Обработчик клика на кнопку "Регистрация"
         registrBtn.addEventListener("click", (event) => {
-            event.preventDefault(); 
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
 
             let name = document.getElementById("user_name").value;
             let errorMessage = document.getElementById("error-message");
 
             if (name === "") {
+                // Если имя не заполнено, подсвечиваем поле и выводим сообщение об ошибке
                 document.getElementById("user_name").classList.add("error");
                 errorMessage.textContent = "Поле 'Имя' обязательно для заполнения!";
             } else {
+                // Если имя заполнено, сохраняем и скрываем форму
                 document.getElementById("user_name").classList.remove("error");
                 errorMessage.textContent = "";
 
-                localStorage.setItem('user_name', name); 
-                tg.sendData(JSON.stringify({ name, user_id: localStorage.getItem('user_id') })); 
-                tg.close(); 
+                localStorage.setItem('user_name', name); // Сохраняем имя в localStorage
+                tg.sendData(JSON.stringify({ name, user_id: localStorage.getItem('user_id') })); // Отправляем данные в Telegram
+                tg.close(); // Закрываем WebApp
             }
         });
     </script>
