@@ -100,46 +100,28 @@
 
      <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-     <script>
+ <script>
         let tg = window.Telegram.WebApp;
-        let buy = document.getElementById("buy");
-        let order = document.getElementById("order");
-        tg.expand();
+        document.getElementById('submit').addEventListener('click', () => {
+            let name = document.getElementById('user_name').value;
+            let email = document.getElementById('user_email').value;
+            let phone = document.getElementById('user_phone').value;
 
-        buy.addEventListener("click", () => {
-             document.getElementById("main").style.display = "none";
-             document.getElementById("form").style.display = "block";
-             document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
-        });
-
-        order.addEventListener("click",  () => {
-             document.getElementById("error").innerText = "";
-             let name =  document.getElementById("user_name").value;
-             let email =  document.getElementById("user_email").value;
-             let phone =  document.getElementById("user_phone").value;
-
-             if(name.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в имени";
+            if (name.length < 2 || email.length < 2 || phone.length < 2) {
+                alert("Пожалуйста, заполните все поля.");
                 return;
-             }
-             if(email.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в email";
-                return;
-             }
-             if(phone.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в телефоне";
-                return;
-             }
+            }
 
-             let data = {
+            // Отправляем данные в бот
+            let data = {
                 name: name,
                 email: email,
-                phone: phone,
-             }
-             tg.sendData(JSON.stringify(data));
+                phone: phone
+            };
 
-             tg.close();
+            tg.sendData(JSON.stringify(data));
+            tg.close();  // Закрытие WebApp после успешной отправки данных
         });
-     </script>
+    </script>
 </body>
 </html>
