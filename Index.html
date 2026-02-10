@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestKatalMotors</title>
+    <title>Katal Motors - Регистрация</title>
     <style>
         * {
             margin: 0;
@@ -12,37 +12,19 @@
         }
 
         body {
-            color: #fff;
-            background-color: #2e2e2e; /* Темный фон для всего */
-            display: flex;
-            justify-content: center;
-            align-items: center; /* Центрируем все по вертикали и горизонтали */
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
             height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Главное меню */
-        .Main {
-            text-align: center;
-            width: 100%;
-            max-width: 350px;
-            padding: 20px;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 26px;
-            margin-bottom: 10px;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        /* Логотип */
+        /* Главное меню и логотип */
         .logo {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             background-color: #000;
             border-radius: 50%;
             display: flex;
@@ -52,27 +34,24 @@
             font-size: 18px;
             font-weight: bold;
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 20px;
         }
 
-        /* Модальное окно регистрации */
-        #form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            z-index: 2;
-            padding-top: 40px;
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-top: 100px;
+            text-align: center;
         }
 
         .form-content {
-            background-color: #2C2C2C; /* Серый фон для окна регистрации */
-            padding: 25px;
-            border-radius: 10px;
-            max-width: 350px;
             width: 100%;
+            max-width: 350px;
+            padding: 25px;
             text-align: center;
+            background-color: #2C2C2C;
+            border-radius: 10px;
         }
 
         input {
@@ -81,22 +60,17 @@
             border: 2px solid #535353;
             padding: 12px 10px;
             margin: 15px 0;
-            background: #424242;
-            color: #fff;
-            transition: all .2s;
+            background: var(--tg-theme-section-separator-color);
+            color: var(--tg-theme-text-color);
             width: 100%;
         }
 
-        input:focus {
-            border-color: #4CAF50;
-        }
-
         .error {
-            border-color: #ff6666; /* Мягкий красный цвет для ошибок */
+            border-color: #ff6666;
         }
 
         .error-message {
-            color: #ff6666; /* Мягкий красный для текста ошибки */
+            color: #ff6666;
             font-size: 14px;
             margin-top: 5px;
         }
@@ -110,45 +84,39 @@
             font-size: 18px;
             font-weight: 500;
             cursor: pointer;
-            color: #fff;
-            background-color: #4CAF50; /* Зеленая кнопка */
+            color: var(--tg-theme-button-text-color);
+            background-color: var(--tg-theme-button-color);
             transition: background-color 0.3s;
         }
 
         .btn:hover {
-            background-color: #45a049; /* Цвет кнопки при наведении */
+            background-color: var(--tg-theme-button-color-hover);
         }
 
-        /* Новое меню после регистрации */
+        /* Для второго меню после регистрации */
         #afterRegistration {
             display: none;
             text-align: center;
-        }
-
-        #afterRegistration .logo {
-            background-color: #4CAF50; /* Цвет фона после регистрации */
+            margin-top: 50px;
         }
 
         #afterRegistration .btn {
-            background-color: #f44336; /* Красная кнопка "Купить" */
+            background-color: #f44336;
         }
+
     </style>
 </head>
 <body>
-    <!-- Логотип -->
     <div class="logo">logo</div>
-
     <!-- Главное меню -->
-    <div id="Main" class="Main">
+    <div id="Main">
         <h1>Katal Motors</h1>
-    </div>
-
-    <!-- Модальное окно регистрации -->
-    <div id="form" class="form-content">
-        <h1>Регистрация</h1>
-        <input type="text" placeholder="Введите ваше имя" id="user_name">
-        <div id="error-message" class="error-message"></div>
-        <button id="registr" class="btn">Зарегистрироваться</button>
+        <div class="form-content">
+            <h2>Регистрация</h2>
+            <input type="text" placeholder="Введите ваше имя" id="user_name">
+            <div id="error-message" class="error-message"></div>
+            <button id="registr" class="btn">Зарегистрироваться</button>
+        </div>
     </div>
 
     <!-- Новое меню после регистрации -->
@@ -167,11 +135,11 @@
 
         // Проверка, если имя и userId уже сохранены в localStorage, показываем главное меню после регистрации
         if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) {
-            document.getElementById("form").style.display = "none";  // Скрываем форму регистрации
+            document.getElementById("Main").style.display = "none";  // Скрываем форму регистрации
             document.getElementById("afterRegistration").style.display = "block"; // Показываем меню после регистрации
         } else {
             // Если данные не сохранены, показываем окно регистрации
-            document.getElementById("form").style.display = "flex";
+            document.getElementById("Main").style.display = "flex";
         }
 
         // Обработчик клика на кнопку "Регистрация"
@@ -192,7 +160,7 @@
 
                 localStorage.setItem('user_name', name); // Сохраняем имя в localStorage
                 tg.sendData(JSON.stringify({ name, user_id: localStorage.getItem('user_id') })); // Отправляем данные в Telegram
-                document.getElementById("form").style.display = "none";  // Скрываем форму регистрации
+                document.getElementById("Main").style.display = "none";  // Скрываем форму регистрации
                 document.getElementById("afterRegistration").style.display = "block"; // Показываем меню после регистрации
             }
         });
