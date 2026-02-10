@@ -1,190 +1,73 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katal Motors - Регистрация</title>
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KatalMotorsTest</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap")
 
-        body {
-            color: #fff;
-            background-color: #2e2e2e; /* Темный фон для всего */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* Сделаем выравнивание по верхнему краю */
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
 
-        /* Логотип */
-        .logo {
-            width: 70px;
-            height: 70px;
-            background-color: #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
+      body {
+         font-family: "Montserrat", sans-serif;
+         font-weight: 200,
+         color: var(--tg-theme-text-color):
+         background: var(--tg-theme-bg-color):
+      }
 
-        /* Название Katal Motors */
-        h1 {
-            font-size: 32px;
-            font-weight: 600;
-            text-align: center;
-            margin-top: 100px; /* Отступ от логотипа */
-        }
+      #main {
+         width: 100%;
+         padding: 20px;
+         text-align: center;
+      }
 
-        /* Главное меню */
-        .form-content {
-            background-color: #2C2C2C; /* Серый фон для окна регистрации */
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 350px;
-            width: 100%;
-            margin-top: 20px;
-            text-align: center;
-            box-sizing: border-box; /* Убедимся, что отступы и размеры не выходят за пределы */
-        }
+      h1 {
+         margin-top: 50px;
+         margin-bottom: 10px;
+      }
 
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+      img {
+         width: 70px;
+         margin: 30px auto;
+      }
 
-        input {
-            outline: none;
-            border-radius: 5px;
-            border: 2px solid #535353;
-            padding: 12px 10px;
-            margin: 15px 0;
-            background: #424242;
-            color: #fff;
-            width: 100%;
-            box-sizing: border-box; /* Убедимся, что ширина учитывает padding */
-            font-size: 16px;
-        }
+      p {
+         width: 350px;
+         margin: 0 auto;
+      }
 
-        .error {
-            border-color: #ff6666;
-        }
+      button {
+         border: 0;
+         border-radius: 5px;
+         margin-top: 50px;
+         height: 60px;
+         width: 200px;
+         font-size: 20px;
+         font-weight: 500;
+         cursor: pointer;
+         transition: all 500ms ease;
+         color: var(--tg-theme-button-color)
+         background: var(--tg-theme-button-text-color);
+      }
 
-        .error-message {
-            color: #ff6666;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .btn {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 25px;
-            height: 50px;
-            width: 100%;
-            font-size: 18px;
-            font-weight: 500;
-            cursor: pointer;
-            color: #fff;
-            background-color: #4CAF50; /* Зеленая кнопка */
-            transition: background-color 0.3s;
-            box-sizing: border-box; /* Убедимся, что кнопка растягивается на всю ширину */
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Для второго меню после регистрации */
-        #afterRegistration {
-            display: none;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        #afterRegistration .btn {
-            background-color: #f44336; /* Красная кнопка "Купить" */
-        }
-
+      button:hover {
+         background: var(--tg-theme-secondary-bg-color);
+      }
     </style>
 </head>
 <body>
-    <div class="logo">logo</div>
-    <!-- Название Katal Motors -->
-    <h1>Katal Motors</h1>
-
-    <!-- Главное меню -->
-    <div id="Main" class="form-content">
-        <h2>Регистрация</h2>
-        <input type="text" placeholder="Введите ваше имя" id="user_name">
-        <div id="error-message" class="error-message"></div>
-        <button id="registr" class="btn">Зарегистрироваться</button>
-    </div>
-
-    <!-- Новое меню после регистрации -->
-    <div id="afterRegistration">
-        <div class="logo">logo</div>
-        <h1>Katal Motors</h1>
-        <button class="btn" id="buyBtn">Купить</button>
-    </div>
-
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-
-        let registrBtn = document.getElementById("registr");
-        let buyBtn = document.getElementById("buyBtn");
-
-        // Проверка, если имя и userId уже сохранены в localStorage, показываем главное меню после регистрации
-        if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) {
-            document.getElementById("Main").style.display = "none";  // Скрываем форму регистрации
-            document.getElementById("afterRegistration").style.display = "block"; // Показываем меню после регистрации
-        } else {
-            // Если данные не сохранены, показываем окно регистрации
-            document.getElementById("Main").style.display = "flex";
-        }
-
-        // Обработчик клика на кнопку "Регистрация"
-        registrBtn.addEventListener("click", (event) => {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы
-
-            let name = document.getElementById("user_name").value;
-            let errorMessage = document.getElementById("error-message");
-
-            if (name === "") {
-                // Если имя не заполнено, подсвечиваем поле и выводим сообщение об ошибке
-                document.getElementById("user_name").classList.add("error");
-                errorMessage.textContent = "Поле 'Имя' обязательно для заполнения!";
-            } else {
-                // Если имя заполнено, сохраняем и скрываем форму
-                document.getElementById("user_name").classList.remove("error");
-                errorMessage.textContent = "";
-
-                localStorage.setItem('user_name', name); // Сохраняем имя в localStorage
-                tg.sendData(JSON.stringify({ name, user_id: localStorage.getItem('user_id') })); // Отправляем данные в Telegram
-                document.getElementById("Main").style.display = "none";  // Скрываем форму регистрации
-                document.getElementById("afterRegistration").style.display = "block"; // Показываем меню после регистрации
-            }
-        });
-
-        // Обработчик клика на кнопку "Купить"
-        buyBtn.addEventListener("click", () => {
-            // Действия при нажатии на кнопку "Купить"
-            alert("Переход к покупке");
-        });
-    </script>
+     <div id="main">
+       <h1>TestKatalMotors</h1>
+       <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+       <p>Text text text katal motor motors moto lakat.</p>
+       <button id="buy">Купить</button>
+     </div>
 </body>
 </html>
