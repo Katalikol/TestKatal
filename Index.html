@@ -80,7 +80,7 @@
 
         let submitButton = document.getElementById("submit");
 
-        submitButton.addEventListener("click", () => {
+        submitButton.addEventListener("click", function() {
             let name = document.getElementById("user_name").value;
 
             // Проверка на минимальную длину имени
@@ -95,7 +95,10 @@
                 user_id: tg.initDataUnsafe.user.id,
                 username: tg.initDataUnsafe.user.username
             };
+            
+            // Отправляем данные в Telegram
             tg.sendData(JSON.stringify(data));
+            console.log("Data sent:", data);  // Это для отладки
 
             // Закрытие WebApp
             tg.close();
