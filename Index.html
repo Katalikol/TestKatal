@@ -129,9 +129,14 @@
             };
             tg.sendData(JSON.stringify(data));
 
+            // Закрытие WebApp
+            tg.close();
+
             // Показываем сообщение о успешной регистрации
-            document.getElementById("form").style.display = "none"; // Прячем форму
-            alert("Вы успешно зарегистрированы под именем " + name);
+            alert("Вы успешно зарегистрированы под именем " + name + ". Теперь вы можете перейти к покупке!");
+
+            // Прячем форму регистрации
+            document.getElementById("form").style.display = "none";
         });
     </script>
 </body>
