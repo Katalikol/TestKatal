@@ -95,10 +95,12 @@
                 user_id: tg.initDataUnsafe.user.id,
                 username: tg.initDataUnsafe.user.username
             };
-            
+
+            console.log("Data to be sent:", data);  // Логируем данные для проверки
+
             // Отправляем данные в Telegram
             tg.sendData(JSON.stringify(data));
-            console.log("Data sent:", data);  // Это для отладки
+            console.log("Data sent");  // Логируем, что данные были отправлены
 
             // Закрытие WebApp
             tg.close();
