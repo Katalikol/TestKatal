@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+          content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>document</title>
     <style>
@@ -17,9 +17,9 @@
 
       body {
          font-family: "Montserrat", sans-serif;
-         font-weight: 200,
-         color: var(--tg-theme-text-color):
-         background: var(--tg-theme-bg-color):
+         font-weight: 200;
+         color: var(--tg-theme-text-color);
+         background: var(--tg-theme-bg-color);
       }
 
       #main {
@@ -53,7 +53,7 @@
          font-weight: 500;
          cursor: pointer;
          transition: all 500ms ease;
-         color: var(--tg-theme-button-color)
+         color: var(--tg-theme-button-color);
          background: var(--tg-theme-button-text-color);
       }
 
@@ -105,14 +105,14 @@
         let order = document.getElementById("order");
 
         buy.addEventListener("click", () => {
-             document.getElementById("main").stype.display = "none";
-             document.getElementById("form").stype.display = "block";
-             document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.first_name;
+             document.getElementById("main").style.display = "none";
+             document.getElementById("form").style.display = "block";
+             document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
         });
 
         order.addEventListener("click",  () => {
-             tg.close()
-        }
+             tg.close();
+        });
      </script>
 </body>
 </html>
