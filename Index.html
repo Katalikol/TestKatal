@@ -26,17 +26,22 @@
         .Main {
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 350px;
             padding: 20px;
-            position: absolute;
+            position: absolute; /* Позиционируем его поверх всего */
             z-index: 1; /* Убедимся, что оно сверху */
         }
 
         h1 {
-            font-size: 30px;
-            margin-bottom: 20px;
+            font-size: 26px;
+            margin-bottom: 15px;
             color: #fff;
             font-weight: 600;
+        }
+
+        img {
+            width: 60px;
+            margin: 20px auto;
         }
 
         /* Логотип */
@@ -51,16 +56,16 @@
             color: #fff;
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .btn {
             border: 0;
             border-radius: 5px;
-            margin-top: 30px;
-            height: 60px;
+            margin-top: 25px;
+            height: 50px;
             width: 200px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 500;
             cursor: pointer;
             color: #fff;
@@ -89,9 +94,9 @@
 
         .form-content {
             background-color: #2C2C2C;
-            padding: 30px;
+            padding: 25px;
             border-radius: 10px;
-            max-width: 400px;
+            max-width: 350px;
             width: 100%;
             text-align: center;
         }
@@ -100,8 +105,8 @@
             outline: none;
             border-radius: 5px;
             border: 2px solid #535353;
-            padding: 15px 10px;
-            margin: 10px 0;
+            padding: 12px 10px;
+            margin: 15px 0;
             background: #424242;
             color: #fff;
             transition: all .2s;
@@ -143,7 +148,7 @@
             <h1>Регистрация</h1>
             <input type="text" placeholder="Введите ваше имя" id="user_name">
             <div id="error-message" class="error-message"></div>
-            <button id="registr" class="btn">Зарегистрироваться</button>
+            <button id="registr" class="btn">Зарег</button>
         </div>
     </div>
 
