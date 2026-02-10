@@ -23,7 +23,16 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Логотип */
+        /* Логотип и надпись Katal Motors */
+        .header {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 50px;
+            width: 100%;
+            justify-content: center;
+        }
+
         .logo {
             width: 70px;
             height: 70px;
@@ -35,17 +44,12 @@
             color: #fff;
             font-size: 18px;
             font-weight: bold;
-            position: absolute;
-            top: 20px;
-            left: 20px;
+            margin-right: 15px;
         }
 
-        /* Название Katal Motors */
         h1 {
             font-size: 32px;
             font-weight: 600;
-            text-align: center;
-            margin-top: 100px; /* Отступ от логотипа */
         }
 
         /* Главное меню */
@@ -55,8 +59,8 @@
             border-radius: 10px;
             max-width: 350px;
             width: 100%;
-            margin-top: 20px;
             text-align: center;
+            margin-top: 10px;
         }
 
         input {
@@ -111,9 +115,11 @@
     </style>
 </head>
 <body>
-    <div class="logo">logo</div>
-    <!-- Название Katal Motors -->
-    <h1>Katal Motors</h1>
+    <!-- Логотип и название -->
+    <div class="header">
+        <div class="logo">logo</div>
+        <h1>Katal Motors</h1>
+    </div>
 
     <!-- Главное меню -->
     <div id="Main" class="form-content">
