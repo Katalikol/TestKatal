@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Регистрация и Покупка</title>
+    <title>Регистрация</title>
     <style>
-       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
 
         * {
             margin: 0;
@@ -82,19 +82,16 @@
 </head>
 <body>
     <div id="main">
-        <h1>TestKatalMotors</h1>
+        <h1>Регистрация</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
-        <p>Заполни форму для регистрации и продолжи покупку!</p>
-        <button id="register">Регистрация</button>
+        <p>Заполни форму для регистрации и продолжи!</p>
+        <button id="register">Зарегистрироваться</button>
     </div>
 
     <form id="form">
-        <h1>Оформление покупки</h1>
+        <h1>Регистрация</h1>
         <input type="text" placeholder="Имя" id="user_name">
-        <input type="email" placeholder="Email" id="user_email">
-        <input type="tel" placeholder="Телефон" id="user_phone">
-        <div id="error"></div>
-        <button id="order">Купить</button>
+        <button id="submit">Зарегистрироваться</button>
     </form>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -104,7 +101,7 @@
         tg.expand();
 
         let registerButton = document.getElementById("register");
-        let orderButton = document.getElementById("order");
+        let submitButton = document.getElementById("submit");
 
         registerButton.addEventListener("click", () => {
             // Скрыть главную страницу и показать форму
@@ -115,36 +112,26 @@
             document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
         });
 
-        orderButton.addEventListener("click", () => {
-            document.getElementById("error").innerText = "";
+        submitButton.addEventListener("click", () => {
             let name = document.getElementById("user_name").value;
-            let email = document.getElementById("user_email").value;
-            let phone = document.getElementById("user_phone").value;
 
-            // Проверка данных
+            // Проверка на минимальную длину имени
             if (name.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в имени";
-                return;
-            }
-            if (email.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в email";
-                return;
-            }
-            if (phone.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в телефоне";
+                alert("Пожалуйста, введите имя.");
                 return;
             }
 
             // Отправка данных в Telegram
             let data = {
                 name: name,
-                email: email,
-                phone: phone,
+                user_id: tg.initDataUnsafe.user.id,
+                username: tg.initDataUnsafe.user.username
             };
             tg.sendData(JSON.stringify(data));
 
-            // Не закрывать WebApp
-            // tg.close(); // Уберите этот вызов, чтобы не закрывать WebApp после регистрации
+            // Показываем сообщение о успешной регистрации
+            document.getElementById("form").style.display = "none"; // Прячем форму
+            alert("Вы успешно зарегистрированы под именем " + name);
         });
     </script>
 </body>
