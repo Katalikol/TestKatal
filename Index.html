@@ -12,16 +12,18 @@
         }
 
         body {
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-            height: 100vh;
+            color: #fff;
+            background-color: #2e2e2e; /* Темный фон для всего */
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start; /* Сделаем выравнивание по верхнему краю */
             align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
-        /* Главное меню и логотип */
+        /* Логотип */
         .logo {
             width: 70px;
             height: 70px;
@@ -38,20 +40,23 @@
             left: 20px;
         }
 
+        /* Название Katal Motors */
         h1 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 600;
-            margin-top: 100px;
             text-align: center;
+            margin-top: 100px; /* Отступ от логотипа */
         }
 
+        /* Главное меню */
         .form-content {
-            width: 100%;
-            max-width: 350px;
+            background-color: #2C2C2C; /* Серый фон для окна регистрации */
             padding: 25px;
-            text-align: center;
-            background-color: #2C2C2C;
             border-radius: 10px;
+            max-width: 350px;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
         }
 
         input {
@@ -60,8 +65,8 @@
             border: 2px solid #535353;
             padding: 12px 10px;
             margin: 15px 0;
-            background: var(--tg-theme-section-separator-color);
-            color: var(--tg-theme-text-color);
+            background: #424242;
+            color: #fff;
             width: 100%;
         }
 
@@ -84,13 +89,13 @@
             font-size: 18px;
             font-weight: 500;
             cursor: pointer;
-            color: var(--tg-theme-button-text-color);
-            background-color: var(--tg-theme-button-color);
+            color: #fff;
+            background-color: #4CAF50; /* Зеленая кнопка */
             transition: background-color 0.3s;
         }
 
         .btn:hover {
-            background-color: var(--tg-theme-button-color-hover);
+            background-color: #45a049;
         }
 
         /* Для второго меню после регистрации */
@@ -101,22 +106,21 @@
         }
 
         #afterRegistration .btn {
-            background-color: #f44336;
+            background-color: #f44336; /* Красная кнопка "Купить" */
         }
-
     </style>
 </head>
 <body>
     <div class="logo">logo</div>
+    <!-- Название Katal Motors -->
+    <h1>Katal Motors</h1>
+
     <!-- Главное меню -->
-    <div id="Main">
-        <h1>Katal Motors</h1>
-        <div class="form-content">
-            <h2>Регистрация</h2>
-            <input type="text" placeholder="Введите ваше имя" id="user_name">
-            <div id="error-message" class="error-message"></div>
-            <button id="registr" class="btn">Зарегистрироваться</button>
-        </div>
+    <div id="Main" class="form-content">
+        <h2>Регистрация</h2>
+        <input type="text" placeholder="Введите ваше имя" id="user_name">
+        <div id="error-message" class="error-message"></div>
+        <button id="registr" class="btn">Зарегистрироваться</button>
     </div>
 
     <!-- Новое меню после регистрации -->
