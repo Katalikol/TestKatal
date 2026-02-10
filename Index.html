@@ -20,6 +20,7 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
+            flex-direction: column;
         }
 
         /* Главное меню */
@@ -40,8 +41,8 @@
 
         /* Логотип */
         .logo {
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             background-color: #000;
             border-radius: 50%;
             display: flex;
@@ -50,23 +51,19 @@
             color: #fff;
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 15px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
 
         /* Модальное окно регистрации */
         #form {
             display: flex;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8); /* Прозрачный черный фон */
             justify-content: center;
-            align-items: center; /* Центрируем форму по вертикали */
+            align-items: center;
             flex-direction: column;
             z-index: 2;
-            padding-top: 50px;
+            padding-top: 40px;
         }
 
         .form-content {
@@ -122,24 +119,43 @@
             background-color: #45a049; /* Цвет кнопки при наведении */
         }
 
+        /* Новое меню после регистрации */
+        #afterRegistration {
+            display: none;
+            text-align: center;
+        }
+
+        #afterRegistration .logo {
+            background-color: #4CAF50; /* Цвет фона после регистрации */
+        }
+
+        #afterRegistration .btn {
+            background-color: #f44336; /* Красная кнопка "Купить" */
+        }
     </style>
 </head>
 <body>
+    <!-- Логотип -->
+    <div class="logo">logo</div>
+
     <!-- Главное меню -->
     <div id="Main" class="Main">
-        <!-- Логотип -->
-        <div class="logo">logo</div>
         <h1>Katal Motors</h1>
     </div>
 
     <!-- Модальное окно регистрации -->
-    <div id="form">
-        <div class="form-content">
-            <h1>Регистрация</h1>
-            <input type="text" placeholder="Введите ваше имя" id="user_name">
-            <div id="error-message" class="error-message"></div>
-            <button id="registr" class="btn">Зарегистрироваться</button>
-        </div>
+    <div id="form" class="form-content">
+        <h1>Регистрация</h1>
+        <input type="text" placeholder="Введите ваше имя" id="user_name">
+        <div id="error-message" class="error-message"></div>
+        <button id="registr" class="btn">Зарегистрироваться</button>
+    </div>
+
+    <!-- Новое меню после регистрации -->
+    <div id="afterRegistration">
+        <div class="logo">logo</div>
+        <h1>Katal Motors</h1>
+        <button class="btn" id="buyBtn">Купить</button>
     </div>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -147,11 +163,12 @@
         let tg = window.Telegram.WebApp;
 
         let registrBtn = document.getElementById("registr");
+        let buyBtn = document.getElementById("buyBtn");
 
-        // Проверка, если имя и userId уже сохранены в localStorage, показываем главную страницу
+        // Проверка, если имя и userId уже сохранены в localStorage, показываем главное меню после регистрации
         if (localStorage.getItem('user_name') && localStorage.getItem('user_id')) {
-            document.getElementById("Main").style.display = "none";  // Скрываем главную секцию
-            tg.close(); // Закрываем окно
+            document.getElementById("form").style.display = "none";  // Скрываем форму регистрации
+            document.getElementById("afterRegistration").style.display = "block"; // Показываем меню после регистрации
         } else {
             // Если данные не сохранены, показываем окно регистрации
             document.getElementById("form").style.display = "flex";
@@ -175,8 +192,15 @@
 
                 localStorage.setItem('user_name', name); // Сохраняем имя в localStorage
                 tg.sendData(JSON.stringify({ name, user_id: localStorage.getItem('user_id') })); // Отправляем данные в Telegram
-                tg.close(); // Закрываем WebApp
+                document.getElementById("form").style.display = "none";  // Скрываем форму регистрации
+                document.getElementById("afterRegistration").style.display = "block"; // Показываем меню после регистрации
             }
+        });
+
+        // Обработчик клика на кнопку "Купить"
+        buyBtn.addEventListener("click", () => {
+            // Действия при нажатии на кнопку "Купить"
+            alert("Переход к покупке");
         });
     </script>
 </body>
