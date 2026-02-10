@@ -75,7 +75,7 @@
         <button id="buy" class="btn">Купить</button>
     </div>
     <form id="form">
-        <h1>Регистрация</h1>
+        <h1>Регестрация</h1>
         <input type="text" placeholder="Имя" id="user_name">
         <input type="text" placeholder="Телефон" id="user_phone">
         <button id="registr" class="btn">Регистрация</button>
@@ -85,31 +85,21 @@
     <script>
         let tg = window.Telegram.WebApp;
 
-        // Получаем кнопки по id
         let buyBtn = document.getElementById("buy");
-        let orderBtn = document.getElementById("registr");
+        let registrBtn = document.getElementById("registr");
+        tg.exapnd();
 
         // Обработчик клика на кнопку "Купить"
         buyBtn.addEventListener("click", () => {
             document.getElementById("Main").style.display = "none";  // Скрываем главную секцию
             document.getElementById("form").style.display = "block"; // Показываем форму
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.last_name;
         });
 
         // Обработчик клика на кнопку "Регистрация"
-        orderBtn.addEventListener("click", (event) => {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы
-
-            let title = document.getElementById("user_name").value;
-            let description = document.getElementById("user_phone").value;
-
-            let data = {
-                title: title,
-                desc: description
-            };
-
-            tg.sendData(JSON.stringify(data)); // Отправляем данные в Telegram
+        registrBtn.addEventListener("click", (event) => {
+            tg.close()
         });
     </script>
 </body>
 </html>
-
