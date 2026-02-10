@@ -13,7 +13,7 @@
 
         body {
             color: #fff;
-            background-color: #1e1e1e; /* Темный фон для всего */
+            background-color: #2e2e2e; /* Темный фон для всего */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,6 +39,21 @@
         img {
             width: 70px;
             margin: 30px auto;
+        }
+
+        /* Логотип */
+        .logo {
+            width: 70px;
+            height: 70px;
+            background-color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 30px;
         }
 
         .btn {
@@ -118,8 +133,9 @@
 <body>
     <!-- Главное меню -->
     <div id="Main" class="Main">
-        <h1>TestKatalMotors</h1>
-        <img src="https://avatars.mds.yandex.net/i?id=92059cd2e3a30100d6ef109d0b7194cb8c5f286b-4079923-images-thumbs&n=13" alt="Logo">
+        <!-- Логотип -->
+        <div class="logo">logo</div>
+        <h1>Katal Motors</h1>
         <button id="buy" class="btn">Начать регистрацию</button>
     </div>
 
