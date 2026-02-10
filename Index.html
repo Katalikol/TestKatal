@@ -22,11 +22,14 @@
             font-family: Arial, sans-serif;
         }
 
+        /* Главное меню */
         .Main {
             text-align: center;
             width: 100%;
             max-width: 400px;
             padding: 20px;
+            position: absolute; /* Позиционируем его поверх всего */
+            z-index: 1; /* Убедимся, что оно сверху */
         }
 
         h1 {
@@ -53,7 +56,7 @@
             color: #fff;
             font-size: 18px;
             font-weight: bold;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .btn {
@@ -76,8 +79,8 @@
 
         /* Модальное окно регистрации */
         #form {
-            display: none;
-            position: fixed;
+            display: flex;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -86,7 +89,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            z-index: 1000; /* Поверх всего контента */
+            z-index: 2; /* Чтобы окно регистрации было сверху */
         }
 
         .form-content {
