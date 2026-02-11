@@ -25,7 +25,7 @@
          height: 100vh;
          display: flex;
          flex-direction: column;
-         justify-content: flex-start; /* Обеспечиваем начало с верхней части экрана */
+         justify-content: flex-start;
          align-items: center;
       }
 
@@ -39,7 +39,7 @@
          padding: 10px 20px;
          display: flex;
          flex-direction: column;
-         justify-content: flex-start; /* Убираем пустое пространство сверху */
+         justify-content: flex-start;
          align-items: center;
          height: 100%;
          box-sizing: border-box;
@@ -50,8 +50,8 @@
          align-items: center;
          justify-content: flex-start;
          width: 100%;
-         padding: 0; /* Убираем лишние отступы */
-         margin-bottom: 0; /* Убираем отступ снизу */
+         padding: 0;
+         margin-bottom: 10px; /* Уменьшаем отступ снизу */
       }
 
       #header img {
@@ -68,66 +68,74 @@
       #content {
          width: 100%;
          text-align: center;
-         margin-top: 20px; /* Убираем излишний верхний отступ */
+         margin-top: 30px; /* Поднимаем текст немного выше */
       }
 
       p {
          width: 350px;
-         margin: 0 auto;
+         margin: 10px auto; /* Отступ для текста */
          text-align: center;
       }
 
+      h1 {
+         margin-top: 20px; /* Снижаем заголовок */
+      }
+
       input {
-         width: 95%; /* Увеличиваем ширину поля для ввода */
+         width: 95%;
          outline: none;
-         margin: 10px 2.5%;
+         margin: 15px 2.5%;
          padding: 15px 10px;
          font-size: 14px;
-         border: 2px solid silver;
+         border: 2px solid #ccc; /* Серый цвет по умолчанию */
          border-radius: 5px;
+         transition: border-color 0.3s ease;
       }
 
       input:focus {
-         border-color: #db5d5d;
+         border-color: #a8e6cf; /* Нежно-зеленый при фокусе */
+      }
+
+      input.error {
+         border-color: #ff6b6b; /* Нежно-красный цвет, если ошибка */
       }
 
       button {
          border: 0;
          border-radius: 5px;
-         margin-top: 20px; /* Снижаем отступ сверху */
+         margin-top: 20px;
          height: 60px;
          width: 200px;
-         font-size: 20px;
+         font-size: 16px; /* Уменьшаем размер текста */
          font-weight: 500;
          cursor: pointer;
          transition: all 500ms ease;
-         color: var(--tg-theme-button-color);
-         background: var(--tg-theme-button-text-color);
+         color: white;
+         background-color: #a8e6cf; /* Нежно-зеленая кнопка */
       }
 
       button:hover {
-         background: var(--tg-theme-secondary-bg-color);
+         background-color: #80c8a6; /* При наведении немного темнее */
       }
 
       #error {
          color: red;
          margin: 10px 0;
+         font-size: 14px;
       }
     </style>
 </head>
 <body>
      <div id="main">
-       <!-- Новый хедер с логотипом и названием -->
        <div id="header">
          <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" alt="Logo">
          <h1>TestKatalMotors</h1>
        </div>
 
-       <!-- Контент регистрационной формы -->
        <div id="content">
          <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
+         <h1>Регистрация</h1>
          <form id="form">
-           <h1>Регистрация</h1>
            <input type="text" placeholder="Имя" id="user_name" required>
            <div id="error"></div>
            <button id="register">Зарегистрироваться</button>
@@ -142,22 +150,32 @@
         tg.expand();
 
         let register = document.getElementById("register");
+        let userNameInput = document.getElementById("user_name");
 
-        register.addEventListener("click", () => {
-            document.getElementById("error").innerText = "";
-            let name = document.getElementById("user_name").value;
+        register.addEventListener("click", (e) => {
+            e.preventDefault();  // Чтобы не отправлялась форма
+
+            let name = userNameInput.value.trim();
+            let error = document.getElementById("error");
+            
+            // Сброс ошибки
+            error.innerText = "";
+            userNameInput.classList.remove('error');
 
             if (name.length < 2) {
-                document.getElementById("error").innerText = "Ошибка в имени";
+                error.innerText = "Имя слишком короткое";
+                userNameInput.classList.add('error');  // Добавляем класс для красной обводки
                 return;
             }
 
-            let data = {
-                name: name,
-            };
+            let data = { name: name };
 
             tg.sendData(JSON.stringify(data));
             tg.close();
+        });
+
+        userNameInput.addEventListener('focus', () => {
+            userNameInput.classList.remove('error');  // Убираем ошибку, если снова фокусируемся
         });
      </script>
 </body>
