@@ -135,11 +135,18 @@
        <div id="content">
          <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
          <h1>Регистрация</h1>
+
+         <!-- Форма регистрации (показывается только для незарегистрированных пользователей) -->
          <form id="form">
            <input type="text" placeholder="Имя" id="user_name" required>
            <div id="error"></div>
            <button id="register">Зарегистрироваться</button>
          </form>
+         
+         <!-- Пустое меню для зарегистрированных пользователей -->
+         <div id="empty_menu" style="display: none;">
+            <p>Добро пожаловать в TestKatalMotors!</p>
+         </div>
        </div>
      </div>
 
@@ -151,6 +158,13 @@
 
         let register = document.getElementById("register");
         let userNameInput = document.getElementById("user_name");
+        let emptyMenu = document.getElementById("empty_menu");
+
+        // Если пользователь уже зарегистрирован, показываем пустое меню
+        if (tg.initDataUnsafe.user) {
+            document.getElementById("content").style.display = "none";
+            emptyMenu.style.display = "block"; // Показываем пустое меню
+        }
 
         register.addEventListener("click", (e) => {
             e.preventDefault();  // Чтобы не отправлялась форма
@@ -180,4 +194,3 @@
      </script>
 </body>
 </html>
-
