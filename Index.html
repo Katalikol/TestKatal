@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Регистрация</title>
     <style>
@@ -20,12 +20,15 @@
          font-weight: 200;
          color: var(--tg-theme-text-color);
          background: var(--tg-theme-bg-color);
+         overflow-x: hidden; /* Отключаем горизонтальную прокрутку */
+         width: 100%; /* Убираем возможные переполнения по ширине */
       }
 
       #main {
          width: 100%;
          padding: 20px;
          text-align: center;
+         overflow: hidden; /* Предотвращаем прокрутку */
       }
 
       h1 {
