@@ -123,6 +123,11 @@
          margin: 10px 0;
          font-size: 14px;
       }
+
+      /* Пустое меню для зарегистрированных пользователей */
+      #empty_menu {
+         display: none;
+      }
     </style>
 </head>
 <body>
@@ -135,8 +140,6 @@
        <div id="content">
          <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
          <h1>Регистрация</h1>
-
-         <!-- Форма регистрации (показывается только для незарегистрированных пользователей) -->
          <form id="form">
            <input type="text" placeholder="Имя" id="user_name" required>
            <div id="error"></div>
@@ -144,7 +147,7 @@
          </form>
          
          <!-- Пустое меню для зарегистрированных пользователей -->
-         <div id="empty_menu" style="display: none;">
+         <div id="empty_menu">
             <p>Добро пожаловать в TestKatalMotors!</p>
          </div>
        </div>
