@@ -51,7 +51,7 @@
          justify-content: flex-start;
          width: 100%;
          padding: 0;
-         margin-bottom: 10px; /* Уменьшаем отступ снизу */
+         margin-bottom: 10px;
       }
 
       #header img {
@@ -68,17 +68,17 @@
       #content {
          width: 100%;
          text-align: center;
-         margin-top: 30px; /* Поднимаем текст немного выше */
+         margin-top: 30px;
       }
 
       p {
          width: 350px;
-         margin: 10px auto; /* Отступ для текста */
+         margin: 10px auto;
          text-align: center;
       }
 
       h1 {
-         margin-top: 20px; /* Снижаем заголовок */
+         margin-top: 20px;
       }
 
       input {
@@ -87,17 +87,17 @@
          margin: 15px 2.5%;
          padding: 15px 10px;
          font-size: 14px;
-         border: 2px solid #ccc; /* Серый цвет по умолчанию */
+         border: 2px solid #ccc;
          border-radius: 5px;
          transition: border-color 0.3s ease;
       }
 
       input:focus {
-         border-color: #a8e6cf; /* Нежно-зеленый при фокусе */
+         border-color: #a8e6cf;
       }
 
       input.error {
-         border-color: #ff6b6b; /* Нежно-красный цвет, если ошибка */
+         border-color: #ff6b6b;
       }
 
       button {
@@ -106,16 +106,16 @@
          margin-top: 20px;
          height: 60px;
          width: 200px;
-         font-size: 16px; /* Уменьшаем размер текста */
+         font-size: 16px;
          font-weight: 500;
          cursor: pointer;
          transition: all 500ms ease;
          color: white;
-         background-color: #a8e6cf; /* Нежно-зеленая кнопка */
+         background-color: #a8e6cf;
       }
 
       button:hover {
-         background-color: #80c8a6; /* При наведении немного темнее */
+         background-color: #80c8a6;
       }
 
       #error {
@@ -181,7 +181,7 @@
 
             if (name.length < 2) {
                 error.innerText = "Имя слишком короткое";
-                userNameInput.classList.add('error');  // Добавляем класс для красной обводки
+                userNameInput.classList.add('error');
                 return;
             }
 
@@ -192,7 +192,7 @@
         });
 
         userNameInput.addEventListener('focus', () => {
-            userNameInput.classList.remove('error');  // Убираем ошибку, если снова фокусируемся
+            userNameInput.classList.remove('error');
         });
      </script>
 </body>
