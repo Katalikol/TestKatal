@@ -2,109 +2,128 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Регистрация</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
+       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap")
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
 
-        body {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 200;
-            color: var(--tg-theme-text-color);
-            background: var(--tg-theme-bg-color);
-        }
+      body {
+         font-family: "Montserrat", sans-serif;
+         font-weight: 200;
+         color: var(--tg-theme-text-color);
+         background: var(--tg-theme-bg-color);
+      }
 
-        #form {
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
+      #main {
+         width: 100%;
+         padding: 20px;
+         text-align: center;
+      }
 
-        h1 {
-            margin-top: 50px;
-            margin-bottom: 10px;
-        }
+      h1 {
+         margin-top: 50px;
+         margin-bottom: 10px;
+      }
 
-        input {
-            width: 90%;
-            outline: none;
-            margin: 10px 5%;
-            padding: 15px 10px;
-            font-size: 14px;
-            border: 2px solid silver;
-            border-radius: 5px;
-        }
+      img {
+         width: 70px;
+         margin: 30px auto;
+      }
 
-        input:focus {
-            border-color: #db5d5d;
-        }
+      p {
+         width: 350px;
+         margin: 0 auto;
+      }
 
-        button {
-            border: 0;
-            border-radius: 5px;
-            margin-top: 50px;
-            height: 60px;
-            width: 200px;
-            font-size: 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 500ms ease;
-            color: var(--tg-theme-button-color);
-            background: var(--tg-theme-button-text-color);
-        }
+      button {
+         border: 0;
+         border-radius: 5px;
+         margin-top: 50px;
+         height: 60px;
+         width: 200px;
+         font-size: 20px;
+         font-weight: 500;
+         cursor: pointer;
+         transition: all 500ms ease;
+         color: var(--tg-theme-button-color);
+         background: var(--tg-theme-button-text-color);
+      }
 
-        button:hover {
-            background: var(--tg-theme-secondary-bg-color);
-        }
+      button:hover {
+         background: var(--tg-theme-secondary-bg-color);
+      }
+
+      #form {
+         display: block;
+         text-align: center;
+      }
+
+      input {
+         width: 90%;
+         outline: none;
+         margin: 10px 5%;
+         padding: 15px 10px;
+         font-size: 14px;
+         border: 2px solid silver;
+         border-radius: 5px;
+      }
+
+      input:focus {
+         border-color: #db5d5d;
+      }
+
+      #error {
+         color: red;
+         margin: 10px 0;
+      }
     </style>
 </head>
 <body>
-    <div id="form">
-        <h1>Регистрация</h1>
-        <input type="text" placeholder="Имя" id="user_name">
-        <button id="submit">Зарегистрироваться</button>
-    </div>
+     <div id="main">
+       <h1>TestKatalMotors</h1>
+       <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png">
+       <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+       <form id="form">
+         <h1>Регистрация</h1>
+         <input type="text" placeholder="Имя" id="user_name" required>
+         <div id="error"></div>
+         <button id="register">Зарегистрироваться</button>
+       </form>
+     </div>
 
-    <script>
+     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        let submitButton = document.getElementById("submit");
+        let register = document.getElementById("register");
 
-        submitButton.addEventListener("click", function() {
+        register.addEventListener("click", () => {
+            document.getElementById("error").innerText = "";
             let name = document.getElementById("user_name").value;
 
-            // Проверка на минимальную длину имени
             if (name.length < 2) {
-                alert("Пожалуйста, введите имя.");
+                document.getElementById("error").innerText = "Ошибка в имени";
                 return;
             }
 
-            // Отправка данных в Telegram
             let data = {
                 name: name,
-                user_id: tg.initDataUnsafe.user.id,
-                username: tg.initDataUnsafe.user.username
             };
 
-            console.log("Data to be sent:", data);  // Логируем данные для проверки
-
-            // Отправляем данные в Telegram
             tg.sendData(JSON.stringify(data));
-            console.log("Data sent");  // Логируем, что данные были отправлены
-
-            // Закрытие WebApp
             tg.close();
         });
-    </script>
+     </script>
 </body>
 </html>
