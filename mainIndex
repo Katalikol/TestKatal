@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основное меню</title>
+    <style>
+        /* Оформление основного меню */
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: var(--tg-theme-text-color);
+            background: var(--tg-theme-bg-color);
+            overflow-x: hidden;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+        }
+        #header img {
+            width: 50px;
+            margin-right: 20px;
+        }
+        #header h1 {
+            font-size: 28px;
+            font-weight: 500;
+        }
+        #content {
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #a8e6cf;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #80c8a6;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <img src="https://cdn-icons-png.flaticon.com/128/479/479353.png" alt="Logo">
+        <h1>TestKatalMotors</h1>
+    </div>
+
+    <div id="content">
+        <h1>Основное меню</h1>
+        <button>Мой профиль</button>
+        <button>Магазин</button>
+        <button>Выход</button>
+    </div>
+</body>
+</html>
