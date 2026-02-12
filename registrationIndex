@@ -170,7 +170,11 @@
 
             let data = { name: name };
 
+            let name = userNameInput.value.trim();
+            let data = { name: encodeURIComponent(name) };  // Кодирование строки в UTF-8
+
             tg.sendData(JSON.stringify(data));
+
             tg.close();
         });
 
@@ -180,6 +184,7 @@
      </script>
 </body>
 </html>
+
 
 
 
