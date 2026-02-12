@@ -123,59 +123,32 @@
          margin: 10px 0;
          font-size: 14px;
       }
-
-      /* Стили для основного меню */
-      #mainMenu {
-         display: none;
-      }
     </style>
 </head>
 <body>
-    <div id="main">
-        <div id="header">
-            <img src="https://cdn-icons-png.flaticon.com/128/479/479353.png" alt="Logo">
-            <h1>TestKatalMotors</h1>
-        </div>
+     <div id="main">
+       <div id="header">
+         <img src="https://cdn-icons-png.flaticon.com/128/479/479353.png" alt="Logo">
+         <h1>TestKatalMotors</h1>
+       </div>
 
-        <div id="content">
-            <!-- Меню регистрации, которое скрывается после регистрации -->
-            <div id="registrationForm" style="display: block;">
-                <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
-                <h1>Регистрация</h1>
-                <form id="form">
-                    <input type="text" placeholder="Имя" id="user_name" required>
-                    <div id="error"></div>
-                    <button id="register">Зарегистрироваться</button>
-                </form>
-            </div>
+       <div id="content">
+         <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
+         <h1>Регистрация</h1>
+         <form id="form">
+           <input type="text" placeholder="Имя" id="user_name" required>
+           <div id="error"></div>
+           <button id="register">Зарегистрироваться</button>
+         </form>
+       </div>
+     </div>
 
-            <!-- Новое меню, которое будет показываться после регистрации -->
-            <div id="mainMenu" style="display: none;">
-                <h1>Основное меню</h1>
-                <p>Добро пожаловать в основное меню!</p>
-                <!-- Можно добавить дополнительные кнопки или элементы интерфейса здесь -->
-            </div>
-        </div>
-    </div>
+     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-    <script>
+     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        let isUserRegistered = false;  // Замените на реальную проверку регистрации
-
-        // Если пользователь зарегистрирован, показываем главное меню
-        if (isUserRegistered) {
-            document.getElementById("mainMenu").style.display = "block";
-            document.getElementById("registrationForm").style.display = "none";
-        } else {
-            document.getElementById("mainMenu").style.display = "none";
-            document.getElementById("registrationForm").style.display = "block";
-        }
-
-        // Обработчик регистрации
         let register = document.getElementById("register");
         let userNameInput = document.getElementById("user_name");
 
@@ -184,7 +157,7 @@
 
             let name = userNameInput.value.trim();
             let error = document.getElementById("error");
-
+            
             // Сброс ошибки
             error.innerText = "";
             userNameInput.classList.remove('error');
@@ -199,15 +172,11 @@
 
             tg.sendData(JSON.stringify(data));
             tg.close();
-
-            // После регистрации скрываем форму регистрации и показываем основное меню
-            document.getElementById("mainMenu").style.display = "block";
-            document.getElementById("registrationForm").style.display = "none";
         });
 
         userNameInput.addEventListener('focus', () => {
             userNameInput.classList.remove('error');  // Убираем ошибку, если снова фокусируемся
         });
-    </script>
+     </script>
 </body>
 </html>
