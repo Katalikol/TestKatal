@@ -1,189 +1,102 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Регистрация</title>
-    <style>
-       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap");
+let tg = window.Telegram.WebApp;
 
-      * {
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-      }
+tg.expand();
 
-      body {
-         font-family: "Arial", sans-serif;
-         font-weight: 200;
-         color: #000000; /* Черный цвет */
-         background: #FFFFFF; /* Белый фон */
-         overflow-x: hidden;
-         width: 100%;
-         height: 100vh;
-         display: flex;
-         flex-direction: column;
-         justify-content: flex-start;
-         align-items: center;
-      }
+tg.MainButton.textColor = '#FFFFFF';
+tg.MainButton.color = '#2cab37';
 
-      html, body {
-         width: 100%;
-         height: 100%;
-      }
+let item = "";
 
-      #main {
-         width: 100%;
-         padding: 10px 20px;
-         display: flex;
-         flex-direction: column;
-         justify-content: flex-start;
-         align-items: center;
-         height: 100%;
-         box-sizing: border-box;
-      }
+let btn1 = document.getElementById("btn1");
+let btn2 = document.getElementById("btn2");
+let btn3 = document.getElementById("btn3");
+let btn4 = document.getElementById("btn4");
+let btn5 = document.getElementById("btn5");
+let btn6 = document.getElementById("btn6");
 
-      #header {
-         display: flex;
-         align-items: center;
-         justify-content: flex-start;
-         width: 100%;
-         padding: 0;
-         margin-bottom: 10px; /* Уменьшаем отступ снизу */
-      }
+btn1.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 1!");
+		item = "1";
+		tg.MainButton.show();
+	}
+});
 
-      #header img {
-         width: 40px;
-         margin-right: 10px;
-      }
+btn2.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 2!");
+		item = "2";
+		tg.MainButton.show();
+	}
+});
 
-      #header h1 {
-         font-size: 28px;
-         font-weight: 500;
-         margin: 0;
-      }
+btn3.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 3!");
+		item = "3";
+		tg.MainButton.show();
+	}
+});
 
-      #content {
-         width: 100%;
-         text-align: center;
-         margin-top: 30px; /* Поднимаем текст немного выше */
-      }
+btn4.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 4!");
+		item = "4";
+		tg.MainButton.show();
+	}
+});
 
-      p {
-         width: 350px;
-         margin: 10px auto; /* Отступ для текста */
-         text-align: center;
-      }
+btn5.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 5!");
+		item = "5";
+		tg.MainButton.show();
+	}
+});
 
-      h1 {
-         margin-top: 20px; /* Снижаем заголовок */
-      }
+btn6.addEventListener("click", function(){
+	if (tg.MainButton.isVisible) {
+		tg.MainButton.hide();
+	}
+	else {
+		tg.MainButton.setText("Вы выбрали товар 6!");
+		item = "6";
+		tg.MainButton.show();
+	}
+});
 
-      input {
-         width: 95%;
-         outline: none;
-         margin: 15px 2.5%;
-         padding: 15px 10px;
-         font-size: 14px;
-         border: 2px solid #ccc; /* Серый цвет по умолчанию */
-         border-radius: 5px;
-         transition: border-color 0.3s ease;
-      }
 
-      input:focus {
-         border-color: #a8e6cf; /* Нежно-зеленый при фокусе */
-      }
+Telegram.WebApp.onEvent("mainButtonClicked", function(){
+	tg.sendData(item);
+});
 
-      input.error {
-         border-color: #ff6b6b; /* Нежно-красный цвет, если ошибка */
-      }
 
-      button {
-         border: 0;
-         border-radius: 5px;
-         margin-top: 20px;
-         height: 60px;
-         width: 200px;
-         font-size: 16px; /* Уменьшаем размер текста */
-         font-weight: 500;
-         cursor: pointer;
-         transition: all 500ms ease;
-         color: white;
-         background-color: #a8e6cf; /* Нежно-зеленая кнопка */
-      }
+let usercard = document.getElementById("usercard");
 
-      button:hover {
-         background-color: #80c8a6; /* При наведении немного темнее */
-      }
+let p = document.createElement("p");
 
-      #error {
-         color: red;
-         margin: 10px 0;
-         font-size: 14px;
-      }
-    </style>
-</head>
-<body>
-     <div id="main">
-       <div id="header">
-         <img src="https://cdn-icons-png.flaticon.com/128/479/479353.png" alt="Logo">
-         <h1>TestKatalMotors</h1>
-       </div>
+p.innerText = `${tg.initDataUnsafe.user.first_name}
+${tg.initDataUnsafe.user.last_name}`;
 
-       <div id="content">
-         <p>Пожалуйста, зарегистрируйтесь, чтобы продолжить.</p>
-         <h1>Регистрация</h1>
-         <form id="form">
-           <input type="text" placeholder="Имя" id="user_name" required>
-           <div id="error"></div>
-           <button id="register">Зарегистрироваться</button>
-         </form>
-       </div>
-     </div>
+usercard.appendChild(p);
 
-     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-     <script>
-        let tg = window.Telegram.WebApp;
-        tg.expand();
 
-        let register = document.getElementById("register");
-        let userNameInput = document.getElementById("user_name");
-
-        register.addEventListener("click", (e) => {
-            e.preventDefault();  // Чтобы не отправлялась форма
-
-            let name = userNameInput.value.trim();
-            let error = document.getElementById("error");
-            
-            // Сброс ошибки
-            error.innerText = "";
-            userNameInput.classList.remove('error');
-
-            if (name.length < 2) {
-                error.innerText = "Имя слишком короткое";
-                userNameInput.classList.add('error');  // Добавляем класс для красной обводки
-                return;
-            }
-
-            let data = { name: name };
-
-            let name = userNameInput.value.trim();
-            let data = { name: encodeURIComponent(name) };  // Кодирование строки в UTF-8
-
-            tg.sendData(JSON.stringify(data));
-
-            tg.close();
-        });
-
-        userNameInput.addEventListener('focus', () => {
-            userNameInput.classList.remove('error');  // Убираем ошибку, если снова фокусируемся
-        });
-     </script>
-</body>
-</html>
 
 
 
